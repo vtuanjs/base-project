@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "strict": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "pretty": false,
+    "sourceMap": true,
     "target": "es6",
-    "outDir": "lib",
+    "outDir": "dist",
     "baseUrl": "src",
-    "declaration": true,
     "paths": {
       "*": ["node_modules/*"]
     },
     "allowJs": true,
-    "strictNullChecks": false,
     "noImplicitAny": false,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*.*"],
-  "exclude": ["node_modules", "tests", "lib"]
+  // Add more include file if you want. Like static file, images...
+  // Example: public/**/*
+  "include": ["src/index.ts", "src/**/*.json"],
+  "exclude": ["node_modules", "tests", "dist"]
 }
