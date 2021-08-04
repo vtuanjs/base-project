@@ -1,9 +1,8 @@
 {
   "name": "base-project",
-  "version": "0.1.9",
+  "version": "1.0.0",
   "description": "Base Project",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "index.ts",
   "files": [
     "lib",
     "LICENSE",
@@ -11,24 +10,21 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run build",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.ts'",
     "e2etest": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
     "format": "npx prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "nodemon --exec ts-node ./src/index.ts",
+    "start": "node ./dist/src/index.js",
+    "prod": "npm run build && npm run start"
   },
   "keywords": [
-    "core-project",
+    "base-project",
     "typescript"
   ],
   "author": "Nguyen Van Tuan",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vtuanjs/core.git"
-  },
-  "homepage": "https://github.com/vtuanjs/core#readme",
   "devDependencies": {
     "@types/amqplib": "^0.5.17",
     "@types/chai": "^4.2.18",
