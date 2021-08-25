@@ -13,7 +13,7 @@ const userData = [
 ];
 
 class UserEntity {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   createdAt: string | Date;
@@ -49,7 +49,7 @@ describe('CREATE User', () => {
     userRepo
       .create(user)
       .then((result) => {
-        expect(result).has.ownProperty('id');
+        expect(result).has.ownProperty('_id');
         expect(result.email).to.eqls(user.email);
         expect(result.name).to.eqls(user.name);
         done();
@@ -86,7 +86,7 @@ describe('FIND MANY user', () => {
 describe('FIND ALL user', () => {
   it('should be found list or user with paging', (done) => {
     userRepo
-      .findAll({ email: user.email }, { sort: '-id' })
+      .findAll({ email: user.email }, { sort: '-_id' })
       .then((result) => {
         expect(result.limit).to.be.a('number');
         expect(result.page).to.be.a('number');
@@ -126,7 +126,7 @@ describe('UPDATE user', () => {
 describe('UPDATE user', () => {
   it('should be updated user', (done) => {
     userRepo
-      .updateById(findUser.id, { name: 'Tuan' })
+      .updateById(findUser._id, { name: 'Tuan' })
       .then((result) => {
         expect(result).to.eqls(true);
         done();
@@ -138,7 +138,7 @@ describe('UPDATE user', () => {
 describe('DELETE user', () => {
   it('should be deleted user', (done) => {
     userRepo
-      .deleteById(findUser.id)
+      .deleteById(findUser._id)
       .then((result) => {
         expect(result).to.eqls(true);
         done();

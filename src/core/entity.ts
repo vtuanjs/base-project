@@ -1,5 +1,5 @@
 export default abstract class BaseEntity {
-  id?: string;
+  _id?: string;
   createdAt?: string | Date;
   updatedAt?: string | Date;
 }
