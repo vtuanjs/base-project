@@ -12,11 +12,16 @@ export class Winston implements ILogger {
   showTime: boolean;
   Logger: winston.Logger;
 
-  constructor(config: ILoggerConfig) {
-    this.service = config.service;
-    this.level = config.level;
-    this.transportsToConsole = config.transportsToConsole;
-    this.transportsToFile = config.transportsToFile;
+  constructor({
+    service,
+    level = 'info',
+    transportsToConsole = true,
+    transportsToFile = false
+  }: ILoggerConfig) {
+    this.service = service;
+    this.level = level;
+    this.transportsToConsole = transportsToConsole;
+    this.transportsToFile = transportsToFile;
     this.showLevel = true;
     this.showTime = true;
     this.create();

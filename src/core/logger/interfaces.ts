@@ -7,7 +7,7 @@ export interface ILogger {
 
 export interface ILoggerConfig {
   service: string;
-  level: string;
-  transportsToConsole: boolean;
-  transportsToFile: boolean;
+  level?: string;
+  transportsToConsole?: boolean;
+  transportsToFile?: boolean;
 }
