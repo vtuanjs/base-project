@@ -1,6 +1,19 @@
 import { FilterQuery, Document } from 'mongoose';
-import { FindAllOption, FindAllResponse } from '../types';
-export { FindAllOption, FindAllResponse } from '../types';
+
+export type FindAllOption = {
+  fields: string;
+  limit: number;
+  page: number;
+  sort: any;
+};
+
+export type FindAllResponse<T> = {
+  total: number;
+  limit: number;
+  page: number;
+  totalPages: number;
+  data: T[];
+};
 
 export interface IMongoConfig {
   connectionString?: string;

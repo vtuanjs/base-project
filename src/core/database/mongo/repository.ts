@@ -1,6 +1,5 @@
 import { mongo, model, Document, Schema, Model, FilterQuery, UpdateQuery } from 'mongoose';
-import { IBaseRepository } from '../interfaces';
-import { FindAllOption, FindAllResponse } from '../../types';
+import { IBaseRepository, UpdateOptions, FindAllOption, FindAllResponse } from '../interfaces';
 import { AlreadyExistsError } from '../../errors';
 
 export abstract class MongoBaseRepo<T> implements IBaseRepository<T> {
@@ -46,10 +45,15 @@ export abstract class MongoBaseRepo<T> implements IBaseRepository<T> {
     return entity as T[];
   }
 
-  async findOneAndUpdate(cond: FilterQuery<T & Document>, doc: Partial<T>): Promise<T> {
+  async findOneAndUpdate(
+    cond: FilterQuery<T & Document>,
+    doc: Partial<T>,
+    options?: UpdateOptions
+  ): Promise<T> {
     const entity = await this.model
       .findOneAndUpdate(cond, doc as UpdateQuery<T & Document>, {
-        new: true
+        new: true,
+        ...options
       })
       .lean();
     return entity as T;
