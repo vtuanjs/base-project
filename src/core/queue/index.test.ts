@@ -2,6 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { EventEmitter } from 'events';
 import { IntegrationEvent, RabbitMQ, BaseEvent, IIntegrationEvent } from './index';
+import { waitByPromise } from '../helpers';
 
 const user = {
   name: 'Nguyen Van Tuan',
@@ -17,7 +18,12 @@ class UserEvent extends BaseEvent {
 
   async created(event: IIntegrationEvent, done: (arg?: Error) => void): Promise<void> {
     try {
-      this.logger.info('Implement event', event);
+      describe('IMPLEMENT event', () => {
+        it('should be implement event', (dn) => {
+          expect(event.data.name).to.eqls(user.name);
+          dn();
+        });
+      });
       done();
     } catch (error) {
       done(error);
@@ -45,5 +51,9 @@ describe('PUBLISH event', () => {
 
     const result = await eventBus.publish(userCreatedEvent);
     expect(result).to.eqls(true);
+  });
+
+  it('waiting implement event', async () => {
+    await waitByPromise(1000);
   });
 });
