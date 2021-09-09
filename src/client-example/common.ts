@@ -9,6 +9,7 @@ import {
 } from './errors';
 
 // axiosRetry(axios, { retries: 3 });
+const BASE_API = 'https://apis.client.com/v1';
 const DELAY = 0;
 
 export function makeRequestConfig(param: {
@@ -27,8 +28,7 @@ export function makeRequestConfig(param: {
   rootField: string;
   delay: number;
 } {
-  const baseApi = 'https://apis.client.com/v1';
-  let url = `${baseApi}${param.path}`;
+  let url = `${BASE_API}${param.path}`;
   if (typeof param.query === 'string') {
     url += `?${param.query}`;
   }
